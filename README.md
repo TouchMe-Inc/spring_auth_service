@@ -1,4 +1,5 @@
-# spring_security_service
+# spring_auth_service
+Microservice providing basic authorization.
 
 `POST` /api/auth/login
 
