@@ -1,12 +1,25 @@
-# spring_security_service
+# spring_auth_service
+Microservice providing basic authorization.
 
-Spring Security:
-- [ ] API для регистрации пользователей с ролями admin/journalist/subscriber
-- [ ] Администратор (role admin) может производить CRUD-операции со всеми сущностями
-- [ ] Журналист (role journalist) может добавлять и изменять/удалять только свои новости 
-- [ ] Подписчик (role subscriber) может добавлять и изменять/удалять только свои комментарии
-- [ ] Незарегистрированные пользователи могут только просматривать новости и комментарии
-- [ ] Создать отдельный микросервис с реляционной базой (postgreSQL) хранящей
-информацию о пользователях/ролях. Из главного микросервиса (отвечающего за
-новости) запрашивать эту информацию по  REST с использованием spring-cloud-
-feign-client.
+`POST` /api/auth/login
+
+```json
+{
+  "username": "admin",
+  "password": "12345678"
+}
+```
+
+```json
+{
+  "username": "journalist",
+  "password": "12345678"
+}
+```
+
+```json
+{
+  "username": "user",
+  "password": "12345678"
+}
+```
