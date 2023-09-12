@@ -24,13 +24,14 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public JwtDto login(@NonNull BaseLoginDto authRequest) {
+        final String username = authRequest.getUsername();
         final User user = userRepository
-                .findByUsername(authRequest.getUsername())
-                .orElseThrow(() -> new AuthException("BAD USERNAME"));
+                .findByUsername(username)
+                .orElseThrow(() -> new AuthException("User with username = " + username + " not found"));
 
         // Password is not encrypted.
         if (!user.confirmPassword(authRequest.getPassword())) {
-            throw new AuthException("BAD PASSWORD");
+            throw new AuthException("Incorrect password");
         }
 
         final String accessToken = jwtProvider.generateAccessToken(user);
@@ -44,7 +45,7 @@ public class AuthServiceImpl implements AuthService {
         final String refreshToken = requestRefreshDto.getRefreshToken();
 
         if (!jwtProvider.validateRefreshToken(refreshToken)) {
-            throw new AuthException("BAD REFRESH TOKEN");
+            throw new AuthException("Incorrect refresh token");
         }
 
         final Claims claims = jwtProvider.getRefreshClaims(refreshToken);
@@ -52,7 +53,7 @@ public class AuthServiceImpl implements AuthService {
 
         User user = userRepository
                 .findByUsername(username)
-                .orElseThrow(() -> new AuthException("BAD USERNAME"));
+                .orElseThrow(() -> new AuthException("User with username = " + username + " not found"));
 
         final String accessToken = jwtProvider.generateAccessToken(user);
         final String newRefreshToken = jwtProvider.generateRefreshToken(user);
