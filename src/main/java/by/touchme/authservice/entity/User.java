@@ -32,7 +32,7 @@ public class User {
      */
     private Set<Role> roles;
 
-    public boolean confirmPassword(String password) {
-        return this.password.equals(password);
+    public boolean confirmPassword(String encryptedPassword) {
+        return this.password.equals(encryptedPassword);
     }
 }

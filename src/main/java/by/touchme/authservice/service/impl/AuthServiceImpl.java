@@ -23,14 +23,14 @@ public class AuthServiceImpl implements AuthService {
     private final UserRepository userRepository;
 
     @Override
-    public JwtDto login(@NonNull BaseLoginDto authRequest) {
-        final String username = authRequest.getUsername();
+    public JwtDto login(@NonNull BaseLoginDto baseLoginDto) {
+        final String username = baseLoginDto.getUsername();
         final User user = userRepository
                 .findByUsername(username)
                 .orElseThrow(() -> new AuthException("User with username = " + username + " not found"));
 
         // Password is not encrypted.
-        if (!user.confirmPassword(authRequest.getPassword())) {
+        if (!user.confirmPassword(baseLoginDto.getPassword())) {
             throw new AuthException("Incorrect password");
         }
 

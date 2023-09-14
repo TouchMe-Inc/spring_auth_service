@@ -1,8 +1,13 @@
 package by.touchme.authservice.dto;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
-public class RefreshDto {
+@NoArgsConstructor
+public class RefreshDto
+{
+    @NotNull
     private String refreshToken;
 }
