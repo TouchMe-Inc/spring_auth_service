@@ -117,7 +117,7 @@ public class AuthControllerUnitTest {
                 .andExpect(status().isBadRequest());
     }
 
-    @DisplayName("JUnit test for AuthController.refresh without body")
+    @DisplayName("JUnit test for AuthController.refresh without refresh token")
     @Test
     void refreshWithoutRefreshToken() throws Exception {
         RefreshDto refreshDto = new RefreshDto();
@@ -133,7 +133,7 @@ public class AuthControllerUnitTest {
                 .andExpect(status().isBadRequest());
     }
 
-    @DisplayName("JUnit test for AuthController.refresh without body")
+    @DisplayName("JUnit test for AuthController.refresh")
     @Test
     void refresh() throws Exception {
         RefreshDto refreshDto = new RefreshDto();
