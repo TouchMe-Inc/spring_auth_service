@@ -1,8 +1,14 @@
-# spring_auth_service
+# About spring_auth_service
 Microservice providing basic authorization.
 
-`POST` /api/auth/login
+## Run the application
+To run the application, run the following command in a terminal window directory:
+`./gradlew bootRun`
 
+## Demo
+
+### Login as admin:
+`POST` /api/auth/login
 ```json
 {
   "username": "admin",
@@ -10,6 +16,8 @@ Microservice providing basic authorization.
 }
 ```
 
+### Login as journalist:
+`POST` /api/auth/login
 ```json
 {
   "username": "journalist",
@@ -17,6 +25,8 @@ Microservice providing basic authorization.
 }
 ```
 
+### Login as user:
+`POST` /api/auth/login
 ```json
 {
   "username": "user",
